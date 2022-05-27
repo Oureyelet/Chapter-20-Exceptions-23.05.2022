@@ -66,7 +66,7 @@ int main()
     //Exceptions are handled immediately:
 
     //A more realistic example:
-    std::cout << "Enter a number: ";
+/*    std::cout << "Enter a number: ";
     double x{};
     std::cin >> x;
 
@@ -84,7 +84,7 @@ int main()
     {
         std::cerr << "Error: " << exeption << '\n';
     }
-
+*/
     //What catch blocks typically do:
     
 
