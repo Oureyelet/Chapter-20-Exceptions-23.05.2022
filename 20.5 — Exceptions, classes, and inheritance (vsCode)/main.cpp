@@ -2,6 +2,11 @@
 #include <cassert>
 #include <string>
 #include <string_view>
+#include <exception> // for std::exeption
+#include <cstddef> // for std::size_t
+#include <limits> // for std::numeric_limits
+#include <stdexcept> // for std::runtime_error
+
 
 template<typename T>
 class Array
@@ -178,7 +183,38 @@ int main()
     
     //std::exception:
     
+    try
+    {
+        // Your code using standard library goes here
+        // We'll trigger one of these exceptions intentionally for the sake of the example
 
+        std::string s{};
+        s.resize(std::numeric_limits<std::size_t>::max());// will trigger a std::length_error or allocation exception
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Standard exception: " << e.what() << '\n';
+    }
+
+    //Using the standard exceptions directly:
+    try
+    {
+        throw std::runtime_error("Bad things happened");
+    }
+    // This handler will catch std::exception and all the derived exceptions too
+    catch(const std::exception& e)
+    {
+        std::cerr << "Standard exception: " <<  e.what() << '\n';
+    }
+    
+    //Deriving your own classes from std::exception or std::runtime_error:
+    //go see our "more_examples.cpp"
+    
+
+    /*
+    Note that virtual function what() has specifier noexcept (which means the 
+    function promises not to throw exceptions itself). Therefore, our override should also have spec...
+    */
 
 
     return 0;
