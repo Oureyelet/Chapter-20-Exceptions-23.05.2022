@@ -24,23 +24,22 @@ public:
         : m_name{ name }, m_age{ age }, m_sex{ sex }
     {
     }
-/*
-    Person(std::string_view name, int age, Sex& sex)
-    {
-        m_name = name;
-        m_age = new int{ age };
-        m_sex = sex;
-    }*/
 
     std::size_t getNameLength() const { return m_name.length(); }
     int getAge() const { return m_age; }
+    void getInfo()
+    {
+        std::cout << m_name << " has " << m_age << '\n';
+    }
 
 };
 
-Person& processPerson(Person& person)
+Person processPerson(Person& person)
 {
     if(person.getNameLength() < 2 || person.getAge() < 18)
         throw 1;
+
+    person.getInfo();
   
     return person;    
 }
@@ -58,8 +57,8 @@ int main()
     
     try
     {
-        john = { new Person("J", 17, PERSON_MALE) };
-        processPerson(john);
+        john = { new Person("John", 18, PERSON_MALE) };
+        processPerson(*john);
         delete john;
 
     }
