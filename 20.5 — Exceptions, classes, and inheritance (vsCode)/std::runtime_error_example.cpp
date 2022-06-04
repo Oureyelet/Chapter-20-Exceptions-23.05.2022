@@ -5,8 +5,6 @@
 
 class ArrayException: public std::runtime_error
 {
-private:
-
 public:
     // std::runtime_error takes a const char* null-terminated string.
 	// std::string_view may not be null-terminated, so it's not a good choice here.
